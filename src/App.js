@@ -16,6 +16,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Autenticacao } from "./Components/autenticacao/autenticacao";
 import { ApenasAdmin } from "./Components/autenticacao/verificações/apenasAdmin";
+import { NotFound } from "./Components/404/404";
 
 function App() {
   const { user } = Autenticacao();
@@ -27,8 +28,9 @@ function App() {
           <Header user={user}></Header>
           <div className="Content">
             <Routes>
+            <Route path='*' element={<NotFound />}/>
               <Route path="/" element={<PaginaInicial></PaginaInicial>} />
-              <Route path="/contactos" element={<Contactos></Contactos>} />
+              <Route path="contactos" element={<Contactos></Contactos>} />
               <Route path="/sobrenos" element={<SobreNos></SobreNos>} />
               <Route path="/login" element={<LoginUser></LoginUser>} />
               <Route path="/registrar" element={<Registro></Registro>} />

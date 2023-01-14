@@ -43,7 +43,7 @@ export const Header = (props) => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="justify-content-start">
               <Nav.Link href="/">Página Inicial</Nav.Link>
-              <Nav.Link href="/contactos">Contactos</Nav.Link>
+              <Nav.Link href="contactos">Contactos</Nav.Link>
               <Nav.Link href="/sobrenos">Sobre Nos</Nav.Link>
 
               {isAdmin ? (
