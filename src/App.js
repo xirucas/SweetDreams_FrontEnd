@@ -67,7 +67,7 @@ function App() {
             <Routes>
             <Route path='*' element={<NotFound />}/>
            
-              <Route path="/" element={ isLoading? <ScreenLoader></ScreenLoader> : <PaginaInicial></PaginaInicial>}  />
+              <Route index element={ isLoading? <ScreenLoader></ScreenLoader> : <PaginaInicial></PaginaInicial>}  />
               <Route path="/contactos" element={isLoading? <ScreenLoader></ScreenLoader> : <Contactos></Contactos>} />
               <Route path="/sobrenos" element={isLoading? <ScreenLoader></ScreenLoader> : <SobreNos></SobreNos>} />
               <Route path="/login" element={<LoginUser></LoginUser>} />
