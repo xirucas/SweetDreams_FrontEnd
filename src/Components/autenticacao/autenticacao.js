@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { api } from "../../Shared/api.js";
 
 export const Autenticacao = () => {
+
   const [user, setUser] = useState(null);
+
+  
 
   useEffect(() => {
     CheckToken();
@@ -43,4 +46,5 @@ export const Autenticacao = () => {
     Login,
     Logout,
   };
+  
 };
