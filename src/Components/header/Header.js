@@ -43,9 +43,9 @@ export const Header = (props) => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="justify-content-start">
-              <NavLink to="/">Página Inicial</NavLink>
-              <NavLink to="/contactos">Contactos</NavLink>
-              <NavLink to="/sobrenos">Sobre Nos</NavLink>
+              <NavLink className={"nav-link"} to="/">Página Inicial</NavLink>
+              <NavLink className={"nav-link"} to="/contactos">Contactos</NavLink>
+              <NavLink className={"nav-link"} to="/sobrenos">Sobre Nos</NavLink>
 
               {isAdmin ? (
                 <NavDropdown title="Administração" id="basic-nav-dropdown">
