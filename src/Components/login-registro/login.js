@@ -10,6 +10,8 @@ export const LoginUser = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
 
+  const [isCorrect,setIsCorrect]=useState(true)
+
   const [isLoading, setIsLoading] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -34,6 +36,7 @@ export const LoginUser = () => {
       window.location.reload(false)
       setIsLoading(false);
     }).catch(()=>{
+      setIsCorrect(false)
       setIsLoading(false);
     })
     
@@ -78,7 +81,7 @@ export const LoginUser = () => {
                         />
                       </div>
                     </div>
-
+                    {!isCorrect?<h6>Email ou password incorreta</h6>:""} 
                     <button type="submit" className="btn btn-primary botaoForm">
                       Login
                     </button>

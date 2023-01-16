@@ -4,6 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Autenticacao } from "../autenticacao/autenticacao";
 import { useNavigate } from "react-router";
+import { NavLink } from "react-router-dom";
 
 export const Header = (props) => {
   const user = props.user;
@@ -42,9 +43,9 @@ export const Header = (props) => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="justify-content-start">
-              <Nav.Link href="/">Página Inicial</Nav.Link>
-              <Nav.Link href="/contactos">Contactos</Nav.Link>
-              <Nav.Link href="/sobrenos">Sobre Nos</Nav.Link>
+              <NavLink to="/">Página Inicial</NavLink>
+              <NavLink to="/contactos">Contactos</NavLink>
+              <NavLink to="/sobrenos">Sobre Nos</NavLink>
 
               {isAdmin ? (
                 <NavDropdown title="Administração" id="basic-nav-dropdown">
