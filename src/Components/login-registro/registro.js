@@ -3,11 +3,16 @@ import {  useState } from "react";
 import {api} from "../../Shared/api.js";
 import { useNavigate } from "react-router";
 import "./registro.css";
+import { ScreenLoader } from "../loader/loader.js";
 
 export const Registro = () => {
   const { register, handleSubmit } = useForm();
 
   const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [isCorrect,setIsCorrect]=useState(true)
 
   const [formData, setFormData] = useState({
     id: null,
@@ -29,6 +34,7 @@ export const Registro = () => {
   };
 
   const submitForm = (novo_user, event) => {
+    setIsLoading(true);
     event.preventDefault();
     
     setFormData(novo_user);
@@ -48,9 +54,13 @@ export const Registro = () => {
     .then((res)=>{
         console.log(res.data)
         navigate("/")
+        setIsLoading(false);
     })
     .catch((err)=>{
+      setIsLoading(false);
+      setIsCorrect(false)
         console.log(err)
+        
         
     })
     console.log(user)
@@ -64,6 +74,7 @@ export const Registro = () => {
 
   return (
     <>
+    {isLoading?<ScreenLoader></ScreenLoader>:
       <div className="containerForm">
         <div className="row">
           <div className="col-md-6">
@@ -178,6 +189,7 @@ export const Registro = () => {
                       <option value="Outro">Outro</option>
                     </select>
                   </div>
+                  {!isCorrect?<h6>Algo correu mal verifique os dados e tente novamente</h6>:""} 
                   <button type="submit" className="btn btn-primary botaoForm">
                     Registar
                   </button>
@@ -187,6 +199,7 @@ export const Registro = () => {
           </div>
         </div>
       </div>
+      }
     </>
   );
 };

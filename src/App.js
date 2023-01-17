@@ -20,6 +20,10 @@ import { NotFound } from "./Components/404/404";
 import { useEffect, useState } from "react";
 import { ScreenLoader } from "./Components/loader/loader";
 import { VerificaLogin } from "./Components/autenticacao/verificacoes/verificaLogin";
+import { ListaUtilizadores } from "./Components/content/backoffice/utilizadores/listaUtilizadores";
+import { ListaHoteis } from "./Components/content/backoffice/hoteis/listaHoteis";
+import { ListaQuartos } from "./Components/content/backoffice/quartos/listaQuartos";
+import { ListaReservas } from "./Components/content/backoffice/reservas/listaReservas";
 
 
 
@@ -85,18 +89,18 @@ function App() {
                 />
               </Route>
               <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
-                <Route path="/backoffice/users" element={<h1>users</h1>} />
+                <Route path="/backoffice/users" element={<ListaUtilizadores></ListaUtilizadores>} />
               </Route>
               <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
-                <Route path="/backoffice/hoteis" element={<h1>hoteis</h1>} />
+                <Route path="/backoffice/hoteis" element={<ListaHoteis></ListaHoteis>} />
               </Route>
               <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
-                <Route path="/backoffice/quartos" element={<h1>quartos</h1>} />
+                <Route path="/backoffice/quartos" element={<ListaQuartos></ListaQuartos>} />
               </Route>
               <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
                 <Route
                   path="/backoffice/reservas"
-                  element={<h1>reservas</h1>}
+                  element={<ListaReservas></ListaReservas>}
                 />
               </Route>
             </Routes>

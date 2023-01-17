@@ -1,4 +1,4 @@
-import { Loader, Placeholder } from "rsuite"
+import { Loader} from "rsuite"
 import "./loader.css"
 export const ScreenLoader = () => {
 

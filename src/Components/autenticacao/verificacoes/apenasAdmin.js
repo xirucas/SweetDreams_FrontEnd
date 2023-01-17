@@ -9,7 +9,7 @@ export const  ApenasAdmin = (props) => {
 
   setTimeout(() => {
     setIsLoading(false)
-  }, 500);
+  }, 1000);
 
   return (
     <>

@@ -1,3 +1,4 @@
+import { ListaUtilizadores } from "../utilizadores/listaUtilizadores"
 import "./PaginaInicialBack.css"
 
 export const PaginaInicialBack = () => {
