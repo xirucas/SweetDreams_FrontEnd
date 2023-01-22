@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { api } from "../../../../Shared/api";
 import { TabelaQuartos } from "./tabelaQuartos";
 import { ScreenLoader } from "../../../loader/loader";
+import { NavLink } from "react-router-dom";
 
 export const ListaQuartos = () => {
 
@@ -26,7 +27,7 @@ const [recordsPerPage] = useState(10);
         console.log(err);
         setLoading(false);
       });
-  }, [data]);
+  }, []);
 
   // calcula o índice do último record na página atual
   const indexOfLastRecord = currentPage * recordsPerPage;
@@ -40,15 +41,24 @@ const [recordsPerPage] = useState(10);
   return (
     <>
     {loading? <ScreenLoader /> : (
-    <div className="container mt-5">
-      <h2> Lista de Quartos</h2>
+    <div className="container mt-5 mb-3">
+    <div className="row align-baseline">
+      <div className="col-10" >
+        <h2 className="m-0"> Lista de Quartos</h2>
+      </div>
+      <div style={{ display: "flex" }} className="col-2 justify-content-end align-content-end">
+        <NavLink to={"/backoffice/quartos/add"}><button className="btn btn-primary ">Criar Quarto</button></NavLink>
+      </div>
+    </div>
+  </div> )}
+
       <TabelaQuartos data={currentRecords} />
       <Paginacao
         nPages={nPages}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />
-    </div>)}
+
     </>
   );
 };

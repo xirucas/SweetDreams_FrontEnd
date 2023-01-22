@@ -1,5 +1,27 @@
+import Dropdown from 'react-bootstrap/Dropdown';
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
+import { api } from '../../../../Shared/api';
+
 export const TabelaReservas = (props) => {
   const data = props.data;
+
+  const estados = ["Cancelada", "Pendente", "Confirmada", "Negada"]
+
+
+  const alterarEstado = (id,estado)=>{
+    //codigo para alterar estado
+
+    const estadoFinal = {"estado":estado}
+
+    api.patch("reservas/"+id, estadoFinal).then((res)=>{
+      console.log(res)
+      window.location.reload(false)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  }
+
   return (
     <>
       <div className="container">
@@ -31,11 +53,21 @@ export const TabelaReservas = (props) => {
                     <td>{item.data_saida}</td>
                     <td>{item.preco}</td>
                     <td>{item.numero_pessoas}</td>
-                    <td>{item.estado/*colocar condições aqui e modificar botao*/}</td>
+                    <td><Dropdown>
+                      <Dropdown.Toggle variant="success" id="dropdown-basic">
+                        {item.estado}
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        {estados.map((estado) => (
+                          <Dropdown.Item onClick={()=>alterarEstado(item._id, estado)} >{estado}</Dropdown.Item>
+                        ))}
+
+                      </Dropdown.Menu>
+                    </Dropdown>
+                    </td>
                     <td>
                       <button className="btn btn-danger" >Eliminar</button>
-                      <button className="btn btn-danger">Modificar estado</button>
-                      <button className="btn btn-danger">Editar</button>
+                      <NavLink to={`/backoffice/reservas/${item._id}`}> <button className="btn btn-danger">Editar</button></NavLink>
                     </td>
                   </tr>
                 ))}

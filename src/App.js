@@ -3,28 +3,35 @@ import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router";
 import { Header } from "./Components/header/Header";
 import { Footer } from "./Components/footer/Footer";
+import { useEffect, useState } from "react";
 
-import { Contactos } from "./Components/contactos/Contactos";
-import { SobreNos } from "./Components/sobrenos/SobreNos";
-import { PaginaInicialBack } from "./Components/content/backoffice/paginaInicial/PaginaInicialBack";
-import { PaginaInicial } from "./Components/content/end-user/PaginaInicial";
-import { Registro } from "./Components/login-registro/registro";
-import { LoginUser } from "./Components/login-registro/login";
-
-import "bootstrap/dist/css/bootstrap.min.css";
-
+import { ScreenLoader } from "./Components/loader/loader";
 
 import { Autenticacao } from "./Components/autenticacao/autenticacao";
-import { ApenasAdmin } from "./Components/autenticacao/verificacoes/apenasAdmin";
-import { NotFound } from "./Components/404/404";
-import { useEffect, useState } from "react";
-import { ScreenLoader } from "./Components/loader/loader";
 import { VerificaLogin } from "./Components/autenticacao/verificacoes/verificaLogin";
+import { ApenasAdmin } from "./Components/autenticacao/verificacoes/apenasAdmin";
+
+import { LoginUser } from "./Components/login-registro/login";
+import { Registro } from "./Components/login-registro/registro";
+
+import { PaginaInicial } from "./Components/content/end-user/PaginaInicial";
+import { Contactos } from "./Components/contactos/Contactos";
+import { SobreNos } from "./Components/sobrenos/SobreNos";
+
+import { PaginaInicialBack } from "./Components/content/backoffice/paginaInicial/PaginaInicialBack";
 import { ListaUtilizadores } from "./Components/content/backoffice/utilizadores/listaUtilizadores";
 import { ListaHoteis } from "./Components/content/backoffice/hoteis/listaHoteis";
 import { ListaQuartos } from "./Components/content/backoffice/quartos/listaQuartos";
 import { ListaReservas } from "./Components/content/backoffice/reservas/listaReservas";
 
+import { NotFound } from "./Components/404/404";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import { EditarCriarUsers } from "./Components/content/backoffice/utilizadores/editarCriarUsers";
+import { EditarCriarHoteis } from "./Components/content/backoffice/hoteis/editarCriarHoteis";
+import { EditarCriarQuartos } from "./Components/content/backoffice/quartos/editarCriarQuartos";
+import { EditarCriarReservas } from "./Components/content/backoffice/reservas/editaCriarReservas";
 
 
 function App() {
@@ -92,17 +99,45 @@ function App() {
                 <Route path="/backoffice/users" element={<ListaUtilizadores></ListaUtilizadores>} />
               </Route>
               <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
+                <Route path="/backoffice/users/:id" element={<EditarCriarUsers></EditarCriarUsers>} />
+              </Route>
+              <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
+                <Route path="/backoffice/users/add" element={<EditarCriarUsers></EditarCriarUsers>} />
+              </Route>
+
+              <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
                 <Route path="/backoffice/hoteis" element={<ListaHoteis></ListaHoteis>} />
               </Route>
               <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
+                <Route path="/backoffice/hoteis/:id" element={<EditarCriarHoteis></EditarCriarHoteis>} />
+              </Route>
+              <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
+                <Route path="/backoffice/hoteis/add" element={<EditarCriarHoteis></EditarCriarHoteis>} />
+              </Route>
+
+              <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
                 <Route path="/backoffice/quartos" element={<ListaQuartos></ListaQuartos>} />
               </Route>
+              <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
+                <Route path="/backoffice/quartos/:id" element={<EditarCriarQuartos></EditarCriarQuartos>} />
+              </Route>
+              <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
+                <Route path="/backoffice/quartos/add" element={<EditarCriarQuartos></EditarCriarQuartos>} />
+              </Route>
+
               <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
                 <Route
                   path="/backoffice/reservas"
                   element={<ListaReservas></ListaReservas>}
                 />
               </Route>
+              <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
+                <Route path="/backoffice/reservas/:id" element={<EditarCriarReservas></EditarCriarReservas>} />
+              </Route>
+              <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
+                <Route path="/backoffice/reservas/add" element={<EditarCriarReservas></EditarCriarReservas>} />
+              </Route>
+
             </Routes>
           </div>
           <Footer></Footer>

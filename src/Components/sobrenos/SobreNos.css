@@ -1,0 +1,42 @@
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px;
+    text-align: center;
+    
+  }
+  
+  .about-title {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+  
+  .about-section {
+    margin-bottom: 40px;
+  }
+  
+  .about-subtitle {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .about-text {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #777;
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .about-container {
+      padding: 30px;
+    }
+    .about-title {
+      font-size: 30px;
+    }
+    .about-subtitle {
+      font-size: 18px;
+    }
+    .about-text {
+      font-size: 16px;
+    }
+  }

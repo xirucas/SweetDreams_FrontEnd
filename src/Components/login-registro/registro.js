@@ -24,6 +24,7 @@ export const Registro = () => {
     nif: "",
     genero: "",
     telefone: "",
+    admin:false
   });
 
   const handleChange = (event) => {
@@ -190,7 +191,7 @@ export const Registro = () => {
                     </select>
                   </div>
                   {!isCorrect?<h6>Algo correu mal verifique os dados e tente novamente</h6>:""} 
-                  <button type="submit" className="btn btn-primary botaoForm">
+                  <button type="submit" className="btn btn-primary mt-3">
                     Registar
                   </button>
                 </form>

@@ -82,7 +82,7 @@ export const LoginUser = () => {
                       </div>
                     </div>
                     {!isCorrect?<h6>Email ou password incorreta</h6>:""} 
-                    <button type="submit" className="btn btn-primary botaoForm">
+                    <button type="submit" className="btn btn-primary mt-3">
                       Login
                     </button>
                   </form>

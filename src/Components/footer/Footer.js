@@ -8,10 +8,10 @@ export const Footer = () => {
   }
   const ano = Ano();
     return(
-        <MDBFooter className='text-center text-white fixed-bottom'  style={{ backgroundColor: '#21081a' }}>
+        <MDBFooter className='text-center text-white fixed-bottom'  style={{ backgroundColor: '#fff' }}>
 
       <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
-        <a className='text-white ' href='/' style={{marginLeft: '10px'}}>
+        <a className='text-white ' href='/'>
            SweetDreams
         </a>
         {` - Copyright © ${ano}`}
