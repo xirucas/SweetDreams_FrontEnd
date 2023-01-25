@@ -291,7 +291,7 @@ export const EditarCriarQuartos = () => {
                                         </div>
                                         <div className="form-group">
                                             {!isCorrect ? <h6>Algo correu mal verifique os dados e tente novamente</h6> : ""}
-                                            <button type="submit" className="btn btn-primary">Salvar</button>
+                                            <button type="submit" className="btn btn-primary">Guardar</button>
                                         </div>
                                     </form>
                                 </div>

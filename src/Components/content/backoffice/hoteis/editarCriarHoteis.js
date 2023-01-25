@@ -225,7 +225,7 @@ export const EditarCriarHoteis = () => {
                                             </div>
                                         </div>
                                         {!isCorrect ? <h6>Algo correu mal verifique os dados e tente novamente</h6> : ""}
-                                        <button type="submit" className="btn btn-primary mt-3">Editar</button>
+                                        <button type="submit" className="btn btn-primary mt-3">Guardar</button>
                                     </form>
                                 </div>
                             </div>
