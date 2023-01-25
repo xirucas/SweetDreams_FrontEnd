@@ -67,7 +67,7 @@ export const ListaReservas = () => {
               <h2 className="m-0"> Lista de Reservas</h2>
             </div>
             <div style={{ display: "flex" }} className="col-2 justify-content-end align-content-end">
-              <NavLink to={"/backoffice/reservas/add"}><button className="btn btn-primary ">Criar Utilizador</button></NavLink>
+              <NavLink to={"/backoffice/reservas/add"}><button className="btn btn-primary ">Criar Reserva</button></NavLink>
             </div>
           </div>
           <div className="col-3 mt-3">

@@ -53,7 +53,7 @@ export const PaginaHotel = (props) => {
                                     </Carousel.Item>
 
                                 )}
-                                </Carousel>
+                            </Carousel>
                         </div>
                         <div id='desc'>
                             <div id='descricao'>
@@ -85,13 +85,18 @@ export const PaginaHotel = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {quartoHotel.map(Quarto => <tr>
-                                    <td>{Quarto.tipo}</td>
-                                    <td>{Quarto.servicos.map(serviço => <p>{serviço}</p>)}</td>
-                                    <td>{Quarto.preco}</td>
-                                    <td><NavLink to = {`/hotel/reservar/${hotel._id}/${Quarto._id}`}><button>Reservar</button></NavLink> </td>
+                                {quartoHotel.map(Quarto => 
+                                    Quarto.disponivel ?
+                                    <tr>
+                                        <td>{Quarto.tipo}</td>
+                                        <td>{Quarto.servicos.map(serviço => <p>{serviço}</p>)}</td>
+                                        <td>{Quarto.preco}</td>
+                                        <td><NavLink to={`/hotel/reservar/${hotel._id}/${Quarto._id}`}><button>Reservar</button></NavLink> </td>
 
-                                </tr>)}
+                                    </tr> : ""
+                                
+
+                                )}
 
                             </tbody>
                         </Table>

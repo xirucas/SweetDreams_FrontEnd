@@ -51,7 +51,7 @@ export const Reservar = (props) => {
 
     const handleChange = (novoValor, CheckInDate, CheckOutDate, numberPeople) => {
         setProgress(novoValor);
-        setCheckInOut({ CheckIn: CheckInDate, CheckOut: CheckOutDate, numberPeople:numberPeople });
+        setCheckInOut({ CheckIn: CheckInDate, CheckOut: CheckOutDate, numberPeople: numberPeople });
     };
 
 
@@ -82,7 +82,7 @@ const UserData = (props) => {
     const Hotel = props.Hotel;
     console.log(Hotel)
 
-    const { register, handleSubmit} = useForm();
+    const { register, handleSubmit } = useForm();
 
     const handleClick = () => {
         props.onChange(33);
@@ -106,18 +106,18 @@ const UserData = (props) => {
 
         }
 
-            console.log(user)
-            api.patch("utilizadores/" + User._id, user)
-                .then((res) => {
-                    console.log(res.data)
-                    handleClick()
-                }
-                )
-                .catch((err) => {
+        console.log(user)
+        api.patch("utilizadores/" + User._id, user)
+            .then((res) => {
+                console.log(res.data)
+                handleClick()
+            }
+            )
+            .catch((err) => {
 
-                    console.log(err)
-                })
-    
+                console.log(err)
+            })
+
 
     }
 
@@ -128,16 +128,16 @@ const UserData = (props) => {
                 <Form.Group className="mb-3" >
                     <Form.Label>Nome </Form.Label>
                     <div id='nome'>
-                        <Form.Control type="text" placeholder="Nome" defaultValue={User.nome} 
-                        {...register("nome", {
-                            required: true,
-                        })}
+                        <Form.Control type="text" placeholder="Nome" defaultValue={User.nome}
+                            {...register("nome", {
+                                required: true,
+                            })}
                         />
                         <Form.Control type="text" placeholder="Apelido" defaultValue={User.apelido}
-                        {...register("apelido", {
-                            required: true,
-                        })}
-                         />
+                            {...register("apelido", {
+                                required: true,
+                            })}
+                        />
                     </div>
 
                 </Form.Group>
@@ -145,9 +145,9 @@ const UserData = (props) => {
                 <Form.Group className="mb-3" >
                     <Form.Label>Endereço de email </Form.Label>
                     <Form.Control type="email" placeholder="email" defaultValue={User.email}
-                    {...register("email", {
-                        required: true,
-                    })}
+                        {...register("email", {
+                            required: true,
+                        })}
                     />
                     <Form.Text className="text-muted">
                         Estas informações não serão partilhadas com ninguém
@@ -156,27 +156,27 @@ const UserData = (props) => {
 
                 <Form.Group className="mb-3" >
                     <Form.Label>Telefone </Form.Label>
-                    <Form.Control type="number" placeholder="Numero de Telefone" defaultValue={User.telefone} 
-                    {...register("telefone", {
-                        required: true,
-                    })}
+                    <Form.Control type="number" placeholder="Numero de Telefone" defaultValue={User.telefone}
+                        {...register("telefone", {
+                            required: true,
+                        })}
                     />
                 </Form.Group>
 
                 <Form.Group className="mb-3" >
                     <Form.Label>Data de Nascimento</Form.Label>
-                    <Form.Control type="date" placeholder="Data de Nascimento" defaultValue={User.data_nascimento} 
-                    {...register("data_nascimento", {
-                        required: true,
-                    })}
+                    <Form.Control type="date" placeholder="Data de Nascimento" defaultValue={User.data_nascimento}
+                        {...register("data_nascimento", {
+                            required: true,
+                        })}
                     />
                 </Form.Group>
                 <Form.Group className="mb-3" >
                     <Form.Label>Nif </Form.Label>
-                    <Form.Control type="number" placeholder="Nif" defaultValue={User.nif} 
-                    {...register("nif", {
-                        required: true,
-                    })}
+                    <Form.Control type="number" placeholder="Nif" defaultValue={User.nif}
+                        {...register("nif", {
+                            required: true,
+                        })}
                     />
                 </Form.Group>
 
@@ -266,11 +266,11 @@ const DataData = (props) => {
                 alert("Data de check-in não pode ser inferior a hoje");
             } else if (checkOutDate < checkInDate) {
                 alert("Data de check-out não pode ser inferior a data de check-in");
-            }if(checkInDate == checkOutDate){
+            } if (checkInDate == checkOutDate) {
                 alert("Data de check-out não pode ser igual a data de check-in");
             } else {
 
-                props.onChange(99, checkInDate, checkOutDate,numberPeople.value);
+                props.onChange(99, checkInDate, checkOutDate, numberPeople.value);
             }
         }
     }
@@ -316,20 +316,36 @@ const DataData = (props) => {
 const Fim = (props) => {
     const handleClick = () => {
 
-        const reserva={
-            hotel_id:props.Hotel._id,
-            quarto_id:props.Quarto._id,
-            utilizador_id:props.User._id,
-            data_entrada:props.Data.CheckIn,
-            data_saida:props.Data.CheckOut,
-            preco:props.Quarto.preco,
-            estado:"pendente",
-            numero_pessoas:props.Data.numberPeople
+        const reserva = {
+            hotel_id: props.Hotel._id,
+            quarto_id: props.Quarto._id,
+            utilizador_id: props.User._id,
+            data_entrada: `${new Date(Data.CheckIn).toLocaleDateString("PT-pt")}`,
+            data_saida: `${new Date(Data.CheckOut).toLocaleDateString("PT-pt")}`,
+            preco: precoTotal,
+            estado: "pendente",
+            numero_pessoas: props.Data.numberPeople
         }
 
-  
+        const disponivel = {
+            disponivel: false
+        }
 
-        props.onChange(100);
+
+        api.post("/reservas", reserva).then((res) => {
+            console.log(res);
+            api.patch("/quartos/" + props.Quarto._id, disponivel).then((res) => {
+                console.log(res);
+                props.onChange(100);
+            }).catch((err) => {
+                console.log(err);
+            })
+        }).catch((err) => {
+            console.log(err);
+        })
+
+
+
     };
     const Hotel = props.Hotel;
     const preco = props.Quarto.preco;
@@ -346,7 +362,7 @@ const Fim = (props) => {
     console.log(preco);
     return (
         <div>
-            <h1>Confirma o pagamento de {precoTotal} € por {diffDays} dia /s ? </h1>
+            <h1>Confirma o pagamento de {precoTotal} € por {diffDays} dia/s ? </h1>
             <div>
                 <Accordion defaultActiveKey="1" flush>
                     <Accordion.Item eventKey="0">
