@@ -39,7 +39,7 @@ export const PaginaHotel = () => {
             {loading ? <ScreenLoader></ScreenLoader> :
                 <div className="container mt-4">
                     <div id='mainconteiner'>
-                        <div className='Carousel-conteiner'>
+                        <div className='Carousel-conteiner col-5'>
                             <Carousel style={{ maxWidth: "700px", maxHeight: "500px" }} >
                                 {hotel.imagens.map(Limg =>
 
