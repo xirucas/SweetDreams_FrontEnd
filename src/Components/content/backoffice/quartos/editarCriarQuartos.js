@@ -42,7 +42,7 @@ export const EditarCriarQuartos = () => {
                 preco: "",
                 descricao: "",
                 disponivel: null,
-                servico: [],
+                servicos: [],
                 imagens: []
             })
             setIsLoading(false)
@@ -69,15 +69,15 @@ export const EditarCriarQuartos = () => {
         if (event.target.checked) {
             setFormData((quartosj) => ({
                 ...quartosj,
-                servicos: [...quartosj.servicos, event.target.value]
-            }))
+                servicos: [...quartosj.servicos, event.target.value],
+            }));
         } else {
             setFormData((quartosj) => ({
                 ...quartosj,
-                servicos: quartosj.servicos.filter((servico) => servico !== event.target.value)
-            }))
+                servicos: quartosj.servicos.filter((servico) => servico !== event.target.value),
+            }));
         }
-    }
+    };
 
     useEffect(() => {
         register("id", { value: formData._id });
@@ -94,14 +94,14 @@ export const EditarCriarQuartos = () => {
         const imagem = formData.imagens.split(",");
 
         const quartos = {
-            hotel_id: quartosa.hotel_id,
-            andar: quartosa.andar,
-            numero_quarto: quartosa.numero_quarto,
-            tipo: quartosa.tipo,
-            preco: quartosa.preco,
-            descricao: quartosa.descricao,
-            disponivel: quartosa.disponivel,
-            servicos: quartosa.servicos,
+            hotel_id: formData.hotel_id,
+            andar: formData.andar,
+            numero_quarto: formData.numero_quarto,
+            tipo: formData.tipo,
+            preco: formData.preco,
+            descricao: formData.descricao,
+            disponivel: formData.disponivel,
+            servicos: formData.servicos,
             imagens: imagem
         }
 

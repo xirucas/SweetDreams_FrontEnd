@@ -32,8 +32,8 @@ export const PaginaInicial = () => {
                   <h3 className="text-center">Aqui tem os hotéis disponiveis para si</h3>
                   <div className="row">
                     <div className="col-12">
-                      <div class="container">
-                        <div class="row mt-3">
+                      <div className="container">
+                        <div className="row mt-3">
                           {hoteis.map(Hotelj =>
                           Hotelj.disponivel ?(
                             <div className="col-4 mb-4">

@@ -60,7 +60,7 @@ export const EditarPerfil = (props) => {
             api.patch("utilizadores/" + user._id, usere)
                 .then((res) => {
                     console.log(res.data)
-                    navigate("/perfil")
+                    navigate("/")
                     setIsLoading(false);
                 }
                 )

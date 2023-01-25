@@ -17,33 +17,35 @@ export const PerfilUser = (props) => {
 
     const [loading, setLoading] = useState(true);
 
-    
+
 
     useEffect(() => {
         api.get("reservas/user/" + User._id).then((res) => {
             console.log(res.data)
             setReservas(res.data)
+            api.get("/hoteis").then((res) => {
+                setHoteis(res.data)
+                api.get("/quartos").then((res) => {
+                    setQuartos(res.data)
+                    setLoading(false)
+                }).catch((err) => {
+                    console.log(err)
+                })
+            }).catch((err) => {
+                console.log(err)
+            })
         }).catch((err) => {
             console.log(err)
         })
 
-        api.get("/hoteis").then((res) => {
-            setHoteis(res.data)
-        }).catch((err) => {
-            console.log(err)
-        })
 
-        api.get("/quartos").then((res) => {
-            setQuartos(res.data)
-            setLoading(false)
-        }).catch((err) => {
-            console.log(err)
-        })
-        
+
+
+
     }, [])
 
     return (
-        <>{loading? <ScreenLoader></ScreenLoader>:
+        <>{loading ? <ScreenLoader></ScreenLoader> :
             <div className="user-page">
                 <div className="user-page-main">
                     <div>
@@ -79,11 +81,19 @@ export const PerfilUser = (props) => {
 
                                 {Reservas.map(reserva => {
 
+                                    const checkin = reserva.data_entrada
+                                    const checkOut = reserva.data_saida
 
-                                    const Hotel = Hoteis.find(hotel => hotel.id === reserva.hotel_id);
-                                    const Quarto = Quartos.find(quarto => quarto.id === reserva.quarto_id);
-                                    const Noites = (new Date(reserva.data_saida) - new Date(reserva.data_entrada)) / 1000 / 60 / 60 / 24;
-                                    const precoTotal = Quarto.preco * Noites;
+                                    const checkinSplitted = checkin.split("/")
+                                    const checkOutSplitted = checkOut.split("/")
+
+                                    const checkinDate = new Date(checkinSplitted[2], checkinSplitted[1], checkinSplitted[0])
+                                    const checkOutDate = new Date(checkOutSplitted[2], checkOutSplitted[1], checkOutSplitted[0])
+
+                                    const Hotel = Hoteis.find(hotel => hotel._id === reserva.hotel_id);
+                                    const Quarto = Quartos.find(quarto => quarto._id === reserva.quarto_id);
+
+                                    const Noites = (checkOutDate - checkinDate) / 1000 / 60 / 60 / 24;
                                     return (
                                         <tr>
                                             <td>{Hotel.nome}</td>
@@ -92,7 +102,7 @@ export const PerfilUser = (props) => {
                                             <td>{reserva.data_saida}</td>
                                             <td>{Noites}</td>
                                             <td>{reserva.numero_pessoas}</td>
-                                            <td>{precoTotal}</td>
+                                            <td>{reserva.preco}</td>
                                             <td>{reserva.estado}</td>
                                         </tr>
                                     )
