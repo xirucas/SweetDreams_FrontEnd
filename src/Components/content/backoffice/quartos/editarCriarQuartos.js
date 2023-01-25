@@ -43,7 +43,6 @@ export const EditarCriarQuartos = () => {
                 descricao: "",
                 disponivel: null,
                 servicos: [],
-                imagens: []
             })
             setIsLoading(false)
         } else {
@@ -91,7 +90,7 @@ export const EditarCriarQuartos = () => {
 
         setFormData(quartosa);
 
-        const imagem = formData.imagens.split(",");
+
 
         const quartos = {
             hotel_id: formData.hotel_id,
@@ -102,7 +101,7 @@ export const EditarCriarQuartos = () => {
             descricao: formData.descricao,
             disponivel: formData.disponivel,
             servicos: formData.servicos,
-            imagens: imagem
+
         }
 
         if (formData._id !== null) {
@@ -237,19 +236,7 @@ export const EditarCriarQuartos = () => {
                                             />
                                             {errors.descricao && <span className="text-danger">Este campo é obrigatório</span>}
                                         </div>
-                                        <div className="form-group">
-                                            <label htmlFor="imagens">Imagens</label>
-                                            <textarea
-                                                className="form-control"
-                                                placeholder="coloque aqui os links com uma virgula entre eles"
-                                                {...register("imagens", {
-                                                    required: true,
-                                                    onChange: handleChange,
-                                                    value: formData.imagens,
-                                                })}
-                                            />
-                                            {errors.imagens && <span className="text-danger">Este campo é obrigatório</span>}
-                                        </div>
+                                        
                                         <div className="form-group">
                                             <label htmlFor="disponivel">Disponível</label>
                                             <select
