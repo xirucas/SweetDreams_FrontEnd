@@ -1,0 +1,17 @@
+.serviços-list{
+    list-style: none;
+}
+
+#ul {
+    display: flex; 
+    justify-content: flex-start;
+    float: left;
+    padding-left: 0px;
+    padding-right: 1rem;
+}
+.ver{
+    display: flex;
+    justify-content:flex-start;
+    padding-left: 1rem;
+    padding-bottom: 10px;
+}

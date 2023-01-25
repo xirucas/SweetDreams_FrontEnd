@@ -10,7 +10,7 @@ export const EditarCriarUsers = () => {
 
     const params = useParams();
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     const navigate = useNavigate();
 
@@ -136,6 +136,7 @@ export const EditarCriarUsers = () => {
                                                     value: formData.nome,
                                                 })}
                                             />
+                                            {errors.nome && <span className="text-danger">Este campo é obrigatório</span>}
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="apelido">Apelido</label>
@@ -148,6 +149,7 @@ export const EditarCriarUsers = () => {
                                                     value: formData.apelido,
                                                 })}
                                             />
+                                            {errors.apelido && <span className="text-danger">Este campo é obrigatório</span>}
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="email">Email</label>
@@ -160,6 +162,7 @@ export const EditarCriarUsers = () => {
                                                     value: formData.email,
                                                 })}
                                             />
+                                            {errors.email && <span className="text-danger">Este campo é obrigatório</span>}
                                         </div>
                                         {params.id === undefined? <div className="form-group">
                                             <label htmlFor="password">Password</label>
@@ -176,6 +179,7 @@ export const EditarCriarUsers = () => {
                                                     },
                                                 })}
                                             />
+                                            {errors.password && <span className="text-danger">Este campo é obrigatório</span>}
                                         </div>:""}
                                         
                                         <div className="form-group">
@@ -189,6 +193,7 @@ export const EditarCriarUsers = () => {
                                                     value: formData.data_nascimento,
                                                 })}
                                             />
+                                            {errors.data_nascimento && <span className="text-danger">Este campo é obrigatório</span>}
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="nif">NIF</label>
@@ -201,6 +206,7 @@ export const EditarCriarUsers = () => {
                                                     value: formData.nif,
                                                 })}
                                             />
+                                            {errors.nif && <span className="text-danger">Este campo é obrigatório</span>}
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="telefone">Telefone</label>
@@ -217,6 +223,7 @@ export const EditarCriarUsers = () => {
                                                     pattern: /([9][1236])\d{7}/,
                                                 })}
                                             />
+                                            {errors.telefone && <span className="text-danger">Este campo é obrigatório</span>}
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="genero">Genero</label>
@@ -233,6 +240,7 @@ export const EditarCriarUsers = () => {
                                                 <option value="Masculino">Masculino</option>
                                                 <option value="Outro">Outro</option>
                                             </select>
+
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="admin">Tipo</label>
@@ -248,6 +256,7 @@ export const EditarCriarUsers = () => {
                                                 <option value="false">Utilizador</option>
                                                 <option value="true">Admin</option>
                                             </select>
+                                            
                                         </div>
                                         {!isCorrect ? <h6>Algo correu mal verifique os dados e tente novamente</h6> : ""}
                                         <button type="submit" className="btn btn-primary mt-3">Editar</button>

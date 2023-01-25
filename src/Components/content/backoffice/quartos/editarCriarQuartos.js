@@ -12,7 +12,7 @@ export const EditarCriarQuartos = () => {
 
     const params = useParams();
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     const navigate = useNavigate();
 
@@ -42,7 +42,8 @@ export const EditarCriarQuartos = () => {
                 preco: "",
                 descricao: "",
                 disponivel: null,
-                servico: []
+                servico: [],
+                imagens: [String]
             })
             setIsLoading(false)
         } else {
@@ -90,6 +91,8 @@ export const EditarCriarQuartos = () => {
 
         setFormData(quartosa);
 
+        const imagem = formData.imagens.split(",");
+
         const quartos = {
             hotel_id: quartosa.hotel_id,
             andar: quartosa.andar,
@@ -98,7 +101,8 @@ export const EditarCriarQuartos = () => {
             preco: quartosa.preco,
             descricao: quartosa.descricao,
             disponivel: quartosa.disponivel,
-            servicos: quartosa.servicos
+            servicos: quartosa.servicos,
+            imagens: imagem
         }
 
         if (formData._id !== null) {
@@ -174,6 +178,7 @@ export const EditarCriarQuartos = () => {
                                                     value: formData.andar,
                                                 })}
                                             />
+                                            {errors.andar && <span className="text-danger">Este campo é obrigatório</span>}
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="numero_quarto">Número do Quarto</label>
@@ -186,6 +191,7 @@ export const EditarCriarQuartos = () => {
                                                     value: formData.numero_quarto,
                                                 })}
                                             />
+                                            {errors.numero_quarto && <span className="text-danger">Este campo é obrigatório</span>}
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="tipo">Tipo</label>
@@ -216,6 +222,7 @@ export const EditarCriarQuartos = () => {
                                                     value: formData.preco,
                                                 })}
                                             />
+                                            {errors.preco && <span className="text-danger">Este campo é obrigatório</span>}
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="descricao">Descrição</label>
@@ -228,6 +235,20 @@ export const EditarCriarQuartos = () => {
                                                     value: formData.descricao,
                                                 })}
                                             />
+                                            {errors.descricao && <span className="text-danger">Este campo é obrigatório</span>}
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="imagens">Imagens</label>
+                                            <textarea
+                                                className="form-control"
+                                                placeholder="coloque aqui os links com uma virgula entre eles"
+                                                {...register("imagens", {
+                                                    required: true,
+                                                    onChange: handleChange,
+                                                    value: formData.imagens,
+                                                })}
+                                            />
+                                            {errors.imagens && <span className="text-danger">Este campo é obrigatório</span>}
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="disponivel">Disponível</label>
@@ -246,10 +267,10 @@ export const EditarCriarQuartos = () => {
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="servicos">Serviços</label>
-                                            <div className="" style={{display:"flex",flexWrap:"wrap" }}>
+                                            <div className="" style={{ display: "flex", flexWrap: "wrap" }}>
                                                 {servicos.map((servico, index) => {
                                                     return (
-                                                        <div key={index} className="form-check " style={{flex:"1 1 33.333%"}}>
+                                                        <div key={index} className="form-check " style={{ flex: "1 1 33.333%" }}>
                                                             <input
                                                                 className="form-check-input"
                                                                 type="checkbox"

@@ -1,0 +1,50 @@
+
+
+.Carousel-conteiner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.Carousel-conteiner  div div div img {
+    display: fixed;
+    height: 440px;
+    width: 650px;
+}
+
+#servicos{
+    display: flex;
+    flex-direction: row;
+    border: none;
+    background-color: transparent;
+    gap: 15px;
+}
+#Endereço{
+    display: flex;
+    border: none;
+    background-color: transparent;
+}
+
+#desc{
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding-left: 2%;
+    padding-top: 5%;   
+}
+
+#mainconteiner{
+    display: flex;
+}
+#descricao{
+   display: flex;
+   flex-direction: column;
+   gap:5px
+}
+
+#table{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    
+}

@@ -77,7 +77,7 @@ export const Header = (props) => {
               id="basic-nav-dropdown"
             >
               <NavDropdown.Item href="/perfil">O meu perfil</NavDropdown.Item>
-              <NavDropdown.Item href="/editarperfil">
+              <NavDropdown.Item href="/perfil/editar">
                 Editar conta
               </NavDropdown.Item>
               <NavDropdown.Divider />

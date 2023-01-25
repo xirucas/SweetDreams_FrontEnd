@@ -9,7 +9,7 @@ export const EditarCriarReservas = () => {
 
     const params = useParams();
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     const navigate = useNavigate();
 
@@ -219,6 +219,7 @@ export const EditarCriarReservas = () => {
                                                 }
                                                 )}
                                             </select>
+
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="data_entrada">Data de Entrada</label>
@@ -231,6 +232,7 @@ export const EditarCriarReservas = () => {
                                                     value: formData.data_entrada,
                                                 })}
                                             />
+                                            {errors.data_entrada && <span className="text-danger">Este campo é obrigatório</span>}
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="data_saida">Data de Saída</label>
@@ -243,6 +245,7 @@ export const EditarCriarReservas = () => {
                                                     value: formData.data_saida,
                                                 })}
                                             />
+                                            {errors.data_saida && <span className="text-danger">Este campo é obrigatório</span>}
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="preco">Preço</label>
@@ -255,6 +258,7 @@ export const EditarCriarReservas = () => {
                                                     value: formData.preco,
                                                 })}
                                             />
+                                            {errors.preco && <span className="text-danger">Este campo é obrigatório</span>}
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="numero_pessoas">Número de Pessoas</label>
@@ -267,6 +271,7 @@ export const EditarCriarReservas = () => {
                                                     value: formData.numero_pessoas,
                                                 })}
                                             />
+                                            {errors.numero_pessoas && <span className="text-danger">Este campo é obrigatório</span>}
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="estado">Estado</label>

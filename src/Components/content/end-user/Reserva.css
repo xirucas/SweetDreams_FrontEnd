@@ -1,0 +1,29 @@
+.container-main{
+    height: 100vh;
+    width: 80%;   
+}
+.container-main-main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Container-progress{
+    margin-top: 50px;
+}
+#container{
+    height: 70vh;
+}
+#nome{
+    display: flex;
+}
+#Botoes{
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+.serviÃ§os{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    
+}

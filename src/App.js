@@ -32,12 +32,16 @@ import { EditarCriarUsers } from "./Components/content/backoffice/utilizadores/e
 import { EditarCriarHoteis } from "./Components/content/backoffice/hoteis/editarCriarHoteis";
 import { EditarCriarQuartos } from "./Components/content/backoffice/quartos/editarCriarQuartos";
 import { EditarCriarReservas } from "./Components/content/backoffice/reservas/editaCriarReservas";
+import { PaginaHotel } from "./Components/content/end-user/PaginaHotel";
+import { PerfilUser } from "./Components/content/end-user/perfilUser";
+import { EditarPerfil } from "./Components/content/end-user/editarPerfil";
+import { Reservar } from "./Components/content/end-user/reservar";
 
 
 function App() {
 
   const { user } = Autenticacao();
-  
+
   const [isLogged, setIsLogged] = useState();
 
   const [isAdmin, setIsAdmin] = useState()
@@ -46,95 +50,105 @@ function App() {
 
 
   useEffect(() => {
-    if(user){
+    if (user) {
       setIsLogged(true)
-      if(user.admin){
+      if (user.admin) {
         setIsAdmin(true)
-      }else{
+      } else {
         setIsAdmin(false)
       }
-    }else{
+    } else {
       setIsLogged(false)
       setIsAdmin(false)
     }
   }, [user])
-  
+
 
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false)
     }, 1000);
   }, [])
-  
+
 
   return (
     <>
-    
+
       <BrowserRouter>
         <div className="App">
           <Header user={user}></Header>
           <div className="Content">
-          
+
             <Routes>
-            <Route path='*' element={<NotFound />}/>
-           
-              <Route index element={ isLoading? <ScreenLoader></ScreenLoader> : <PaginaInicial></PaginaInicial>}  />
-              <Route path="/contactos" element={isLoading? <ScreenLoader></ScreenLoader> : <Contactos></Contactos>} />
-              <Route path="/sobrenos" element={isLoading? <ScreenLoader></ScreenLoader> : <SobreNos></SobreNos>} />
+              <Route path='*' element={<NotFound />} />
+              <Route path="/hotel/:id" element={<PaginaHotel user={user}></PaginaHotel>} />
+              <Route path="/hotel/reservar" element={<VerificaLogin is={isLogged}></VerificaLogin>}>
+                <Route path="/hotel/reservar/:hotelId/:quartoId" element={<Reservar user={user}></Reservar>} />
+              </Route>
+
+              <Route index element={<PaginaInicial></PaginaInicial>} />
+              <Route path="/contactos" element={isLoading ? <ScreenLoader></ScreenLoader> : <Contactos></Contactos>} />
+              <Route path="/sobrenos" element={isLoading ? <ScreenLoader></ScreenLoader> : <SobreNos></SobreNos>} />
               <Route path="/login" element={<LoginUser></LoginUser>} />
               <Route path="/registrar" element={<Registro></Registro>} />
               <Route path="/perfil" element={<VerificaLogin is={isLogged}></VerificaLogin>}>
                 <Route
                   path="/perfil"
-                  element={isLoading? <ScreenLoader></ScreenLoader> : <h1>perfil</h1>}
+                  element={isLoading ? <ScreenLoader></ScreenLoader> : <PerfilUser user={user}></PerfilUser>}
                 />
               </Route>
-              <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
+              <Route path="/perfil" element={<VerificaLogin is={isLogged}></VerificaLogin>}>
+                <Route
+                  path="/perfil/editar"
+                  element={isLoading ? <ScreenLoader></ScreenLoader> : <EditarPerfil user={user}></EditarPerfil>}
+                />
+              </Route>
+              <Route path="/backoffice" element={<ApenasAdmin is={{ isLogged, isAdmin }}></ApenasAdmin>}>
                 <Route
                   path="/backoffice"
-                  element={isLoading? <ScreenLoader></ScreenLoader> : <PaginaInicialBack></PaginaInicialBack>}
+                  element={isLoading ? <ScreenLoader></ScreenLoader> : <PaginaInicialBack></PaginaInicialBack>}
                 />
               </Route>
-              <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
+              <Route path="/backoffice" element={<ApenasAdmin is={{ isLogged, isAdmin }}></ApenasAdmin>}>
                 <Route path="/backoffice/users" element={<ListaUtilizadores></ListaUtilizadores>} />
               </Route>
-              <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
+              <Route path="/backoffice" element={<ApenasAdmin is={{ isLogged, isAdmin }}></ApenasAdmin>}>
                 <Route path="/backoffice/users/:id" element={<EditarCriarUsers></EditarCriarUsers>} />
               </Route>
-              <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
+              <Route path="/backoffice" element={<ApenasAdmin is={{ isLogged, isAdmin }}></ApenasAdmin>}>
                 <Route path="/backoffice/users/add" element={<EditarCriarUsers></EditarCriarUsers>} />
               </Route>
 
-              <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
+              <Route path="/backoffice" element={<ApenasAdmin is={{ isLogged, isAdmin }}></ApenasAdmin>}>
                 <Route path="/backoffice/hoteis" element={<ListaHoteis></ListaHoteis>} />
               </Route>
-              <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
+              <Route path="/backoffice" element={<ApenasAdmin is={{ isLogged, isAdmin }}></ApenasAdmin>}>
                 <Route path="/backoffice/hoteis/:id" element={<EditarCriarHoteis></EditarCriarHoteis>} />
               </Route>
-              <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
+              <Route path="/backoffice" element={<ApenasAdmin is={{ isLogged, isAdmin }}></ApenasAdmin>}>
                 <Route path="/backoffice/hoteis/add" element={<EditarCriarHoteis></EditarCriarHoteis>} />
               </Route>
 
-              <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
+              <Route path="/backoffice" element={<ApenasAdmin is={{ isLogged, isAdmin }}></ApenasAdmin>}>
                 <Route path="/backoffice/quartos" element={<ListaQuartos></ListaQuartos>} />
               </Route>
-              <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
+              <Route path="/backoffice" element={<ApenasAdmin is={{ isLogged, isAdmin }}></ApenasAdmin>}>
                 <Route path="/backoffice/quartos/:id" element={<EditarCriarQuartos></EditarCriarQuartos>} />
               </Route>
-              <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
+              <Route path="/backoffice" element={<ApenasAdmin is={{ isLogged, isAdmin }}></ApenasAdmin>}>
                 <Route path="/backoffice/quartos/add" element={<EditarCriarQuartos></EditarCriarQuartos>} />
               </Route>
 
-              <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
+              <Route path="/backoffice" element={<ApenasAdmin is={{ isLogged, isAdmin }}></ApenasAdmin>}>
                 <Route
                   path="/backoffice/reservas"
                   element={<ListaReservas></ListaReservas>}
                 />
               </Route>
-              <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
+              <Route path="/backoffice" element={<ApenasAdmin is={{ isLogged, isAdmin }}></ApenasAdmin>}>
                 <Route path="/backoffice/reservas/:id" element={<EditarCriarReservas></EditarCriarReservas>} />
               </Route>
-              <Route path="/backoffice" element={<ApenasAdmin is={{isLogged, isAdmin}}></ApenasAdmin>}>
+              <Route path="/backoffice" element={<ApenasAdmin is={{ isLogged, isAdmin }}></ApenasAdmin>}>
                 <Route path="/backoffice/reservas/add" element={<EditarCriarReservas></EditarCriarReservas>} />
               </Route>
 

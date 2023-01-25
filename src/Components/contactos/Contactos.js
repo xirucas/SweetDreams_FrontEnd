@@ -1,53 +1,45 @@
-import './contactos.css'
-
+import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
 
 export const Contactos = () => {
-    
-    function handleSubmit(event) {
-        event.preventDefault();
-        console.log("eheheheh")
-      }
 
-      
-   
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
+    const onSubmit = (data) => {
+        setIsSubmitted(true);
+    };
+
     return (
-        <div>
-            <div className="contact-container">
+        <>
+            <div className="container mt-2">
+                    <h1>Contactos</h1>
+                    <p>Se tiver alguma dúvida ou sugestão, não hesite em contactar-nos.</p>
+                    <div className="containerForm">
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <div className="form-group">
+                                <label htmlFor="nome">Nome</label>
+                                <input type="text" className="form-control" id="nome" placeholder="Nome" {...register("nome", { required: true })} />
+                                {errors.nome && <span className="error">Este campo é obrigatório</span>}
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="email">Email</label>
+                                <input type="email" className="form-control" id="email" placeholder="Email" {...register("email", { required: true })} />
+                                {errors.email && <span className="error">Este campo é obrigatório</span>}
+                            </div>
+                            <div className="form-group">
 
-                <div id='form-container'>
-                    <h1 className="contact-title">Contato</h1>
-                    <form className="contact-form" onSubmit={handleSubmit}>
-                        <input type="text" placeholder="Nome" className="contact-input" required />
-                        <input type="email" placeholder="Email" className="contact-input" required />
-                        <textarea placeholder="Mensagem" className="contact-input contact-textarea" required></textarea>
-                        <button className="contact-button" type="submit"  >Enviar</button>
-                    </form>
-                </div>
-
-
-                <div className="contact-info">
-                    
-                    <h1 className="contact-title">Contatos</h1>
-                    <div>
-                    <div className="contact-section">
-                        <h2 className="contact-subtitle">Email :</h2>
-                        <p className="contact-text">contato@sweatdreams.com</p>
+                                <label htmlFor="mensagem">Mensagem</label>
+                                <textarea className="form-control" id="mensagem" rows="3" {...register("mensagem", { required: true })}></textarea>
+                                {errors.mensagem && <span className="error">Este campo é obrigatório</span>}
+                            </div>
+                            <button type="submit" className="btn btn-primary mt-3" style={{height:"42px", width:"90px"}}>Enviar</button>
+                        </form>
                     </div>
-                    <div className="contact-section">
-                        <h2 className="contact-subtitle">Telefone :</h2>
-                        <p className="contact-text">+55 11 123456789</p>
-                    </div>
-                    <div className="contact-section">
-                        <h2 className="contact-subtitle">Redes Sociais :</h2>
-                        <div className="contact-social-links">
-                            <a href="#" className="contact-social-link">Facebook</a>
-                            <a href="#" className="contact-social-link">Twitter</a>
-                            <a href="#" className="contact-social-link">Instagram</a>
-                        </div>
-                    </div>
-                </div>
-                </div>
             </div>
-        </div>
+        </>
+
+
     )
 }
