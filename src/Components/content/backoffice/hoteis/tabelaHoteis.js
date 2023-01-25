@@ -101,7 +101,7 @@ export const TabelaHoteis = (props) => {
                     <tr>
                       <th>Id</th>
                       <th>Nome</th>
-                      <th>Cidade</th>
+                      <th>Localização</th>
                       <th>Disponivel</th>
                       <th>Opções</th>
                     </tr>
@@ -111,7 +111,7 @@ export const TabelaHoteis = (props) => {
                       <tr>
                         <td>{item._id}</td>
                         <td>{item.nome}</td>
-                        <td>{item.cidade}</td>
+                        <td>{item.endereco}</td>
                         <td>{item.disponivel === true ? "Sim" : "Não"}</td>
                         <td>
                         <button className="btn btn-danger" onClick={()=> openshowDelete(item._id)}>Eliminar</button>
