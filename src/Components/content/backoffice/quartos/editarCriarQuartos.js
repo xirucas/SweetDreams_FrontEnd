@@ -43,7 +43,7 @@ export const EditarCriarQuartos = () => {
                 descricao: "",
                 disponivel: null,
                 servico: [],
-                imagens: [String]
+                imagens: []
             })
             setIsLoading(false)
         } else {

@@ -33,7 +33,7 @@ export const EditarCriarHoteis = () => {
                 descricao: "",
                 disponivel: "",
                 servicos: [],
-                imagens: [String]
+                imagens: []
             })
             setIsLoading(false)
         } else {
