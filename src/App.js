@@ -100,7 +100,7 @@ function App() {
               <Route path="/perfil" element={<VerificaLogin is={isLogged}></VerificaLogin>}>
                 <Route
                   path="/perfil/editar"
-                  element={isLoading ? <ScreenLoader></ScreenLoader> : <EditarPerfil user={user}></EditarPerfil>}
+                  element={<EditarPerfil user={user}></EditarPerfil>}
                 />
               </Route>
               <Route path="/backoffice" element={<ApenasAdmin is={{ isLogged, isAdmin }}></ApenasAdmin>}>

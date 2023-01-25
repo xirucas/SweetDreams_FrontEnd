@@ -7,7 +7,7 @@ import { ScreenLoader } from "../../loader/loader";
 export const EditarPerfil = (props) => {
     const user = props.user;
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit} = useForm();
 
     const navigate = useNavigate();
 
@@ -196,6 +196,7 @@ export const EditarPerfil = (props) => {
                             </div>
                             <div className="row">
                                 <div className="col-12">
+                                {!isCorrect ? <h6>Algo correu mal verifique os dados e tente novamente</h6> : ""}
                                     <button type="submit" className="btn btn-primary">Editar</button>
                                 </div>
                             </div>

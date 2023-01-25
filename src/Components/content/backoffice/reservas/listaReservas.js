@@ -32,7 +32,7 @@ export const ListaReservas = () => {
   }, []);
 
   const filtro = (e) => {
-    const { name, value } = e.target;
+    const { value } = e.target;
     console.log(value);
     if (value !== "") {
       api.get(`reservas/hotel/${value}`)

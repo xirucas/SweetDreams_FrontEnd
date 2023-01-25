@@ -6,10 +6,8 @@ import { api } from "../../../Shared/api";
 import { ScreenLoader } from "../../loader/loader";
 import "./PaginaHotel.css"
 
-export const PaginaHotel = (props) => {
+export const PaginaHotel = () => {
     const params = useParams();
-
-    const user = props.user;
 
     const hotelId = params.id
 

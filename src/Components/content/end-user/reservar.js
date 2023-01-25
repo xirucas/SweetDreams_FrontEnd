@@ -5,7 +5,6 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import { api } from '../../../Shared/api';
-import { ScreenLoader } from '../../loader/loader';
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -266,7 +265,7 @@ const DataData = (props) => {
                 alert("Data de check-in não pode ser inferior a hoje");
             } else if (checkOutDate < checkInDate) {
                 alert("Data de check-out não pode ser inferior a data de check-in");
-            } if (checkInDate == checkOutDate) {
+            } if (checkInDate === checkOutDate) {
                 alert("Data de check-out não pode ser igual a data de check-in");
             } else {
 

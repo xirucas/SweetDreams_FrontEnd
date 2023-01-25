@@ -1,0 +1,13 @@
+.user-page{
+    display:flex;
+    justify-content: center;
+}
+.user-page-main{
+    width: 80%;
+}
+#Tabela{
+    margin-top: 80px;
+}
+#user-page-header{
+    margin-bottom: 20px;
+}
