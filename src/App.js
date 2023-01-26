@@ -77,7 +77,7 @@ function App() {
       <BrowserRouter>
         <div className="App">
           <Header user={user}></Header>
-          <div className="Content">
+          <div className="Content min-vh-100">
 
             <Routes>
               <Route path='*' element={<NotFound />} />
